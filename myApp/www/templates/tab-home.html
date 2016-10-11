@@ -1,0 +1,184 @@
+<ion-view on-release="stop()">
+<!-- <ion-view view-title="Dashboard"> -->
+<!-- 头部开始 -->
+<!-- 左 -->
+<ion-header-bar align-title="left" class="bar bar-header bar-energized item-input-inset">
+<div class="button button-icon top-fenlen">
+	<a class="tab-item top-icon-text" href="#" >
+		<i class="icon ion-navicon " id="icon-text" ></i>
+		分类
+	</a> 
+</div>
+<!-- 中 -->
+<label class="item-input-wrapper top-label">
+	<i class="icon ion-ios-search placeholder-icon" ></i>
+	<input type="search" placeholder="{{placeholder}}" >
+	<i class="ion-qr-scanner placeholder-icon"></i>
+</label>
+<!-- 右 -->
+<div id="tab-icon-text" class="button button-icon top-xinxi" >
+	<a class="tab-item top-icon-text" href="#" >
+		<i class="icon ion-ios-chatbubble-outline" id="icon-text2"></i>
+		消息
+	</a> 
+</div>
+</ion-header-bar>
+<!-- 头部结束 -->
+<ion-content locking="true"  has-bouncing="true" id="content" >
+<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+<!-- 轮播图开始 -->
+<ion-slide-box  does-continue="true" auto-play="true"  class="top_slide">
+<ion-slide  ng-repeat="imgurl in imgs">
+<a ng-href="{{imgurl.url}}"><img ng-src="{{imgurl.img}}"></a>
+</ion-slide>
+</ion-slide-box>
+<!-- 轮播图结束 -->
+<!-- 分类开始 -->
+<div class="tabs-icon-top row  huptin ">
+	<a ng-repeat="ht in huotun1" class=" col" href="{{ht.url}}" >
+		<img class="icon" src="{{ht.img}}" alt="{{ht.text}}">
+		<p>{{ht.text}}</p>
+	</a>
+</div>
+<div class="tabs-icon-top row  huptin">
+	<a ng-repeat="ht in huotun2" class="col" href="{{ht.url}}" >
+		<img class="icon" src="{{ht.img}}" alt="{{ht.text}}">
+		<p>{{ht.text}}</p>
+	</a>
+</div>
+<!-- 分类结束 -->
+<!-- 向上滚动新间开始 -->
+<div class="cxhd">
+	<h3 class="cxhd_left" ng-bind='cxhd'>
+	</h3>
+	<div class="cxhd_right xw">
+		<div class="box">
+			<ion-slide-box  does-continue="true" slide-interval=2500 auto-play="true" class="lbt" show-pager="false">
+			<ion-slide ng-repeat="jy in cxhds">
+			<div class="lbt2">
+				<h5><i class='ion-ios-musical-notes'></i>{{jy.text1}}</h5>
+				<h5><i class='ion-ios-musical-note'></i>{{jy.text2}}</h5>
+			</div>
+		</ion-slide>
+	</ion-slide-box>
+</div>
+</div>
+</div>
+<!-- 向上滚动新间结束 -->
+<!-- 秒杀开始 -->
+<ul class="list">
+	<!-- 分隔线开始 -->
+	<li class="item item-divider item_border_none h22">
+	</li>
+	<!-- 分隔线结束 -->
+	<!-- 倒计时开始 -->
+	<li class="item item-icon-left item-icon-right item_border_none">
+		<i class="icon ion-ios-alarm-outline"></i>
+		{{myplaynew}}<span class="new"><span ng-bind="new |date:'HH'"></span>:<span ng-bind="new |date: 'mm'"></span>:<span ng-bind="new |date:'ss'"></span></span>
+		<span class="badge badge-assertive">天天秒杀</span>
+		<i class="icon ion-ios-arrow-right arrow-right" id="arrow-right"></i>
+	</li>
+	<!-- 倒计时结束 -->
+	<!-- 左右滚动条开始 -->
+	<li class="item  item_border_none item_padding_none" ng-hide="mynew < 8" >
+		<div class="overflowscroll"  style="display:{{scrollnone}}" on-drag-right="scrollfalse()" on-drag-left="scrollfalse()" on-swipe-right="scrollfalse()" on-swipe-left="scrollfalse()"></div>
+		<ion-scroll zooming="true"  direction="x"  has-bouncing="true" scrollbar-x="false" scrollbar-y="false" on-release="scrolltrue()">
+		<ul class="scroll" style="width:{{scroll.length*116}}px">
+			<li ng-repeat="sc in scroll" >
+				<a href=""><img ng-src="{{sc.img}}" alt=""><span>￥{{sc.cx.toFixed(2)}}</span><span>￥{{sc.yj.toFixed(2)}}</span><span>{{(sc.cx/sc.yj*10).toFixed(1)}}折</span></a>
+			</li>
+		</ul>
+	</ion-scroll>
+</li>
+<!-- 左右滚动条结束 -->
+</ul>
+<span class="item item-divider item_border_none h22" ></span>
+<span class="listspan positive" >— 超实惠 —</span>
+
+<div class="f1"><img ng-src="{{df.w1}}" alt=""  ></div>
+<div class="df dark">
+	<div class="f1"><img src="{{df.z1}}" alt=""></div>
+	<div class="f1"><img src="{{df.z2}}" alt=""></div>
+</div>
+<span class="item item-divider item_border_none h22" ></span>
+<span class="listspan royal" >— 高品质 —</span>
+<div class="df">
+	<div class="f1"><img src="{{df.w21}}" alt=""></div>
+	<div class="f1"><img src="{{df.w22}}" alt=""></div>
+</div>
+
+<div class="df">
+	<div class="f1"><img src="{{df.w45}}" alt=""></div>
+	<div class="f1"><img src="{{df.w46}}" alt=""></div>
+	<div class="f1"><img src="{{df.w47}}" alt=""></div>
+	<div class="f1"><img src="{{df.w48}}" alt=""></div>
+</div>
+<span class="item item-divider item_border_none h22" ></span>
+<!-- 轮播图开始 -->
+<ion-slide-box  does-continue="true" auto-play="true" slide-interval=3000 class="top_slide">
+<ion-slide  ng-repeat="imgurl in imgx">
+<a ng-href="{{imgurl.url}}"><img ng-src="{{imgurl.img}}"></a>
+</ion-slide>
+</ion-slide-box>
+<!-- 轮播图结束 -->
+<span class="item item-divider item_border_none h22" ></span>
+
+
+<span class="listspan calm" >— 好享购 —</span>
+<div class="df">
+	<div class="f1"><img src="{{df.w21}}" alt=""></div>
+	<div class="f1 dfh">
+	<div class="f1"><img src="{{df.w}}" alt=""></div>
+	<div class="f1 df">
+	<div class="f1"><img src="{{df.z41}}" alt=""></div>
+	<div class="f1"><img src="{{df.z42}}" alt=""></div>
+	</div>
+	</div>
+</div>
+<div class="df">
+	<div class="f1"><img src="{{df.w41}}" alt=""></div>
+	<div class="f1"><img src="{{df.w42}}" alt=""></div>
+	<div class="f1"><img src="{{df.w43}}" alt=""></div>
+	<div class="f1"><img src="{{df.w44}}" alt=""></div>
+</div>
+<span class="item item-divider item_border_none h22" ></span>
+
+<span class="listspan balanced" >— 热销品 —</span>
+<div class="df">
+	<div class="f1"><img src="{{df.z31}}" alt=""></div>
+	<div class="f1"><img src="{{df.z32}}" alt=""></div>
+	<div class="f1"><img src="{{df.z33}}" alt=""></div>
+	</div>
+	</div>
+</div>
+<div class="df">
+	<div class="f1"><img src="{{df.zz41}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz42}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz43}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz44}}" alt=""></div>
+</div>
+<div class="df">
+	<div class="f1"><img src="{{df.zz51}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz52}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz54}}" alt=""></div>
+	<div class="f1"><img src="{{df.zz55}}" alt=""></div>
+</div>
+<span class="item item-divider item_border_none h22" ></span>
+<span class="listspan assertive" >— 欢乐购 —</span>
+<div class="row flg" ng-repeat="imgurl in flg">
+	<div class="col">
+	<img ng-src="{{imgurl.img1}}" alt="">
+	<p class="won2"ng-bind='imgurl.p1'></p>
+	<span class="assertive" ng-bind='imgurl.s$1'></span>
+	<button class="button ion-android-cart icon button-clear button-assertive fr"></button>
+	</div>
+	<div class="col"><img src="{{imgurl.img2}}" alt="">
+	<p class="won2" ng-bind='imgurl.p2'></p>
+	<span class="assertive" ng-bind='imgurl.s$2'></span>
+	<button class="button ion-android-cart icon  button-clear button-assertive fr" ></button>
+	</div>
+</div>
+<span class="listspan " >~ ~ 到底了！ ~ ~</span><br>
+</ion-content>
+<a id="tops" on-tap="scrollTop()" ng-hide="topup"class="ion-android-arrow-dropup-circle"></a>
+</ion-view>
